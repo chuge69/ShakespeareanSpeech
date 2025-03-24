@@ -16,13 +16,15 @@ def read_file_with_encoding(file_path):
 if not os.path.exists('Processed'):
     os.makedirs('Processed')
 
-# 获取当前目录下所有的txt文件
-txt_files = [f for f in os.listdir('.') if f.endswith('.txt')]
+# 获取Unprocessed目录下所有的txt文件
+unprocessed_dir = 'Unprocessed'
+txt_files = [f for f in os.listdir(unprocessed_dir) if f.endswith('.txt')]
 
 for file_name in txt_files:
     try:
         # 读取原文件
-        content = read_file_with_encoding(file_name)
+        input_path = os.path.join(unprocessed_dir, file_name)
+        content = read_file_with_encoding(input_path)
         
         # 使用正则表达式匹配人物对话
         # 匹配模式：开头是中文/英文字符，后面紧跟空格和对话内容
